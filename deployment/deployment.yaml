@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: health-service
-          image: ogara/otus-microservice:1-amd
+#          image: ogara/otus-microservice:1-amd
+          image: ogara/otus-microservice:2-amd
           livenessProbe:
             httpGet:
               path: /health

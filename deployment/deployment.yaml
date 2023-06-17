@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: health-service
+  labels:
+    app: health-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: health-service
+  template:
+    metadata:
+      name: health-service
+      labels:
+        app: health-service
+    spec:
+      containers:
+        - name: health-service
+          image: ogara/otus-microservice:1-amd
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          ports:
+            - name: web
+              containerPort: 8000

@@ -1,0 +1,8 @@
+image:
+  tag: 10.4.22
+auth:
+  database: hw2
+  username: hw2_user
+  password: hw2_password
+volumePermissions:
+  enabled: true

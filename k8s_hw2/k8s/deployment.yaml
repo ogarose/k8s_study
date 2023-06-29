@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-service
+  labels:
+    app: crud-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crud-service
+  template:
+    metadata:
+      name: crud-service
+      labels:
+        app: crud-service
+    spec:
+      containers:
+        - name: crud-service
+          # ARM image
+          image: ogara/otus-microservice:hw2-arm
+          # AMD image
+#          image: ogara/otus-microservice:2-amd
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8000
+#            initialDelaySeconds: 3
+#            periodSeconds: 3
+#          readinessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8000
+#            initialDelaySeconds: 3
+#            periodSeconds: 3
+          ports:
+            - name: web
+              containerPort: 8000
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: crud-configmap
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: crud-configmap
+                  key: DB_PORT
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: crud-configmap
+                  key: DB_NAME
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: crud-configmap
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+#                  the secret auto created by helm db install
+                  name: crud-db-mariadb
+                  key: mariadb-password

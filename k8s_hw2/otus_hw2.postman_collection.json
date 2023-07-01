@@ -173,7 +173,7 @@
 	"variable": [
 		{
 			"key": "hwBaseUrl",
-			"value": "localhost:8089",
+			"value": "arch.homework:80",
 			"type": "string"
 		},
 		{

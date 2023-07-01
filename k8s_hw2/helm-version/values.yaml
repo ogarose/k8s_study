@@ -1,0 +1,20 @@
+fullnameOverride: "hw2-crud"
+
+db:
+  dbhost: "crud-db-mariadb"
+  dbport: "3306"
+  dbname: "hw2"
+  dbusername: "hw2_user"
+  passwordSecret:
+    name: crud-db-mariadb
+    key: mariadb-password
+
+deployment:
+  # ARM image
+#  image: ogara/otus-microservice:hw2-arm
+  # AMD image
+  image: ogara/otus-microservice:hw2-amd
+  port: 8000
+
+ingress:
+  host: arch.homework

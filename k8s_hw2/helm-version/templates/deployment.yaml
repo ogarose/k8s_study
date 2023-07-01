@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "helm-version.fullname" . }}-deployment
+  labels:
+    app: {{ include "helm-version.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "helm-version.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "helm-version.fullname" . }}
+    spec:
+      containers:
+        - name: crud-service
+          image: {{ .Values.deployment.image }}
+          ports:
+            - name: web
+              containerPort: {{ .Values.deployment.port }}
+          env:
+{{ include "crudchart.dbenvs" . | indent 12}}

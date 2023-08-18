@@ -1,0 +1,5 @@
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    # search in all services
+    serviceMonitorSelector: {}

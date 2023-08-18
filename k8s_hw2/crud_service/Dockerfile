@@ -6,4 +6,4 @@ RUN docker-php-ext-install \
 
 COPY . /app
 
-CMD ["php", "-S", "0.0.0.0:8000", "/app/index.php"]
+CMD ["php", "-S", "0.0.0.0:8000", "docke/app/index.php"]

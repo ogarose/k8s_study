@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: crud-service
+  labels:
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: crud-service
+  endpoints:
+    - port: web-traffic
+      path: '/actuator/prometheus'
+      interval: 10s
+      honorLabels: true

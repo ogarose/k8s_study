@@ -1,5 +1,6 @@
 ## Run service
-1. ```kubectl apply -f k8s```
+1. Set k8s namespace to "default". _(important for ingress user routing)_
+2. ```kubectl apply -f k8s```
 
 ## Run postman tests
 

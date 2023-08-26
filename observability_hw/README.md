@@ -15,6 +15,9 @@ helm update
 //install prometeus
 helm install prometheus prometheus-community/kube-prometheus-stack -f prometeus.yaml --namespace monitoring --atomic
 ```
+//delete
+helm uninstall prometheus prometheus-community/kube-prometheus-stack --namespace monitoring --atomic
+
 ### Grafana view
 ```shell
 kubectl port-forward service/prometheus-grafana 9000:80

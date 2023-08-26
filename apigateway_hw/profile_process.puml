@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Client as client
+participant "Api gateway" as gateway
+participant "Profile Service" as profileService
+participant "Auth Service" as authService
+
+client -> gateway: REST /profile/1
+gateway -> authService: GET /auth + session cookie
+alt session cookie is valid
+    authService -> gateway: 200 + Header: x-user-id: 1
+    gateway -> profileService: GET /profile/1 + Header: x-user-id: 1
+    alt profile id is equal to header x-user-id
+      profileService -> client: profile
+    else is not equal
+      profileService -> client: 403 Forbidden
+    end
+
+else session cookie is invalid
+    authService -> client: 401 Unauthorized
+end
+
+@enduml

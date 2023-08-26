@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: user-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: http://auth-service.default.svc.cluster.local:8000/auth
+#    nginx.ingress.kubernetes.io/auth-url: http://auth-service.default/auth
+    nginx.ingress.kubernetes.io/auth-response-headers: x-user-id
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 8000
+                

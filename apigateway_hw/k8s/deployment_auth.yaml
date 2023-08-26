@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: ogara/otus-microservice:auth-arm
+#          image: ogara/otus-microservice:auth-arm
+          image: ogara/otus-microservice:auth-amd
           ports:
             - name: web
               containerPort: 8000

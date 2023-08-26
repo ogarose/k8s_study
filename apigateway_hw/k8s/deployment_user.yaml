@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: ogara/otus-microservice:gate-user-arm
+#          image: ogara/otus-microservice:gate-user-arm
+          image: ogara/otus-microservice:gate-user-amd
           ports:
             - name: web
               containerPort: 8000
